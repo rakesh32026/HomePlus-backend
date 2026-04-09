@@ -2,6 +2,10 @@ package com.homeplus.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Property {
@@ -25,6 +29,15 @@ public class Property {
     private String notes;
     private String status;
     private LocalDateTime submissionDate;
+
+    @Column(name = "improvements", columnDefinition = "TEXT")
+    private String improvementsData;
+
+    @Transient
+    private List<String> improvements = new ArrayList<>();
+
+    @Transient
+    private Estimate adminEstimate;
 
     // ✅ GETTERS & SETTERS
 
@@ -68,4 +81,43 @@ public class Property {
 
     public LocalDateTime getSubmissionDate() { return submissionDate; }
     public void setSubmissionDate(LocalDateTime submissionDate) { this.submissionDate = submissionDate; }
+
+    public List<String> getImprovements() {
+        if ((improvements == null || improvements.isEmpty()) && improvementsData != null && !improvementsData.trim().isEmpty()) {
+            improvements = Arrays.stream(improvementsData.split("\\|"))
+                    .map(String::trim)
+                    .filter(s -> !s.isEmpty())
+                    .collect(Collectors.toList());
+        }
+        return improvements;
+    }
+
+    public void setImprovements(List<String> improvements) {
+        this.improvements = improvements != null ? new ArrayList<>(improvements) : new ArrayList<>();
+        this.improvementsData = this.improvements.isEmpty() ? null : String.join("|", this.improvements);
+    }
+
+    public Estimate getAdminEstimate() { return adminEstimate; }
+    public void setAdminEstimate(Estimate adminEstimate) { this.adminEstimate = adminEstimate; }
+
+    @PrePersist
+    @PreUpdate
+    public void syncImprovementsBeforeSave() {
+        this.improvementsData = (improvements == null || improvements.isEmpty())
+                ? null
+                : String.join("|", improvements);
+    }
+
+    @PostLoad
+    public void loadImprovementsAfterRead() {
+        if (improvementsData == null || improvementsData.trim().isEmpty()) {
+            this.improvements = new ArrayList<>();
+            return;
+        }
+
+        this.improvements = Arrays.stream(improvementsData.split("\\|"))
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .collect(Collectors.toList());
+    }
 }

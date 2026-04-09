@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.homeplus.dto.PropertyHistoryResponse;
 import com.homeplus.entity.Property;
 import com.homeplus.service.PropertyService;
 
@@ -37,6 +38,11 @@ public class PropertyController {
     @GetMapping("/user/{email}")
     public List<Property> getUser(@PathVariable String email) {
         return service.getByUser(email);
+    }
+
+    @GetMapping("/user/{email}/history")
+    public List<PropertyHistoryResponse> getUserHistory(@PathVariable String email) {
+        return service.getHistoryByUser(email);
     }
 
     @PutMapping("/user/{email}/claim-unassigned")

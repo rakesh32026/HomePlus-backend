@@ -39,6 +39,9 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.CREATED).body(AuthResponse.builder()
                     .token(token)
                     .email(user.getEmail())
+                    .fullName(user.getFullName())
+                    .phone(user.getPhone())
+                    .role(user.getRole())
                     .message("Signup successful")
                     .build());
         } catch (RuntimeException e) {
@@ -52,9 +55,13 @@ public class AuthController {
     public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
         try {
             String token = service.login(request.getEmail(), request.getPassword());
+            User user = service.getUserByEmail(request.getEmail());
             return ResponseEntity.ok(AuthResponse.builder()
                     .token(token)
-                    .email(request.getEmail())
+                .email(user != null ? user.getEmail() : request.getEmail())
+                .fullName(user != null ? user.getFullName() : null)
+                .phone(user != null ? user.getPhone() : null)
+                .role(user != null ? user.getRole() : null)
                     .message("Login successful")
                     .build());
         } catch (RuntimeException e) {
