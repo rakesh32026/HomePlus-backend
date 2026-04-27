@@ -1,5 +1,0 @@
-package com.homeplus.config;
-
-public class CorsConfig {
-
-}

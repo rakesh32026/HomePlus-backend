@@ -1,0 +1,21 @@
+# OS/editor
+.DS_Store
+Thumbs.db
+.metadata/
+
+# IDE
+.vscode/*.log
+
+# Frontend
+homeplus-react/node_modules/
+homeplus-react/dist/
+
+# Backend
+homeplusbackend/target/
+
+# Environment files
+.env
+.env.*
+
+# Logs
+*.log

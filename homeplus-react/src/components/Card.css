@@ -1,0 +1,106 @@
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.card-default {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card-default:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.card-elevated {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card-elevated:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card-flat {
+  box-shadow: none;
+  border: 1px solid #e0e0e0;
+}
+
+.card-flat:hover {
+  border-color: #3498db;
+}
+
+.card-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.card-clickable {
+  cursor: pointer;
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.card-gradient .card-title {
+  color: white;
+}
+
+.card-subtitle {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.card-gradient .card-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Stat Card Variant */
+.card-stat {
+  text-align: center;
+  padding: 2rem;
+}
+
+.card-stat .card-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.card-stat .card-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #666;
+}
+
+.card-stat .card-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 1.25rem;
+  }
+
+  .card-icon {
+    font-size: 2rem;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+}
