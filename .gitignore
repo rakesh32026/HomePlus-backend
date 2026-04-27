@@ -7,13 +7,12 @@ Thumbs.db
 .vscode/
 .vscode/*.log
 
-# Frontend
-homeplus-react/node_modules/
-homeplus-react/dist/
-
-# Backend
-homeplusbackend/target/
+# Build output
 target/
+
+# Frontend and nested copies
+homeplus-react/
+homeplusbackend/
 
 # Maven wrapper artifact
 .mvn/wrapper/maven-wrapper.jar
