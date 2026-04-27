@@ -1,0 +1,5 @@
+package com.homeplus.dto;
+
+public class SignupRequest {
+
+}

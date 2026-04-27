@@ -1,0 +1,21 @@
+package com.homeplus.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.homeplus.entity.Estimate;
+import com.homeplus.repository.EstimateRepository;
+
+import java.time.LocalDateTime;
+
+@Service
+public class AdminService {
+
+    @Autowired
+    private EstimateRepository repo;
+
+    public Estimate saveEstimate(Long propertyId, Estimate estimate) {
+        estimate.setPropertyId(propertyId);
+        estimate.setEstimatedDate(LocalDateTime.now());
+        return repo.save(estimate);
+    }
+}
