@@ -19,7 +19,6 @@ import com.homeplus.service.PropertyService;
 
 @RestController
 @RequestMapping("/api/properties")
-@CrossOrigin("http://localhost:5173")
 public class PropertyController {
 
     @Autowired

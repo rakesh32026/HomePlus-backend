@@ -10,7 +10,6 @@ import com.homeplus.service.PropertyEstimationService;
 
 @RestController
 @RequestMapping("/api/admin")
-@CrossOrigin("http://localhost:5173")
 public class AdminController {
 
     @Autowired
