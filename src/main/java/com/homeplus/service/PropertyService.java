@@ -28,7 +28,7 @@ public class PropertyService {
         property.setAdminEstimate(estimate);
 
         // Backfill legacy rows where estimate exists but status was never updated.
-        if (estimate != null && !"Estimated".equalsIgnoreCase(property.getStatus())) {
+        if (estimate != null && ("Pending Review".equalsIgnoreCase(property.getStatus()) || property.getStatus() == null || property.getStatus().trim().isEmpty())) {
             property.setStatus("Estimated");
             repo.save(property);
         }
